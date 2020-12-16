@@ -3,13 +3,23 @@ import refs from './refs.js';
 const { timeSection, daysRef, hoursRef, minsRef, secsRef } = refs;
 
 // let day = 'Dec 11 2020';
-let day = 'Dec 31 2020';
+let day = 'Jan 01 2021';
+
+start(day);
 
 function timer(date) {
   let targetDate = new Date(date);
   let currentDate = Date.now();
   const timeDiff = targetDate - currentDate;
   updateClockface(timeDiff);
+}
+
+function start(day) {
+  timer(day);
+
+  let interval = setInterval(() => {
+    timer(day);
+  }, 1000);
 }
 
 function updateClockface(time) {
@@ -56,7 +66,3 @@ function updateClockface(time) {
 function pad(value) {
   return String(value).padStart(2, '0');
 }
-
-let interval = setInterval(() => {
-  timer(day);
-}, 1000);

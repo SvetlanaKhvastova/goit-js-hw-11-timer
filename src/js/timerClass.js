@@ -8,9 +8,13 @@ class CountdownTimer {
     this.targetDate = targetDate;
   }
 
-  interval = setInterval(() => {
+  start() {
     this.timer();
-  }, 1000);
+
+    this.interval = setInterval(() => {
+      this.timer();
+    }, 1000);
+  }
 
   timer() {
     let currentDate = Date.now();
@@ -44,8 +48,11 @@ class CountdownTimer {
   }
 }
 
-new CountdownTimer({
+const newTimer = new CountdownTimer({
   selector: '#timer-1',
-  targetDate: new Date('Dec 31 2020'),
+  targetDate: new Date('Jan 01 2021'),
   // targetDate: new Date('Dec 11 2020'),
 });
+
+// Вызываем таймер, чтобы при загрузке страницы сразу было видно отсчёт
+newTimer.start();
